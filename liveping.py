@@ -29,7 +29,6 @@ class Liveping:
 
 		# Window
 		self.win = Tk()
-		self.win.wm_title('Liveping - pinging ' + self.host)
 
 		frame = Frame()
 		self.sidebar = Canvas(frame, bg="white", height=self.win_height, width=40)
@@ -44,7 +43,9 @@ class Liveping:
 		self.bar.pack(fill=X)
 
 	def run(self):
-		if __name__ == '__main__' and len(sys.argv) > 1: host = sys.argv[1]
+		if __name__ == '__main__' and len(sys.argv) > 1: self.host = sys.argv[1]
+
+		self.win.wm_title('Liveping - pinging ' + self.host)
 
 		# Ping data updating thread
 		thread = threading.Thread(target=self.updater)
@@ -146,6 +147,6 @@ if __name__ == '__main__':
 	if not admin.isUserAdmin():
 		admin.runAsAdmin()
 		sys.exit(0)
-	
+
 	lp = Liveping()
 	lp.run()
