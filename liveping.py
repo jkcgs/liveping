@@ -44,7 +44,6 @@ class Liveping:
 
 	def run(self):
 		if __name__ == '__main__' and len(sys.argv) > 1: self.host = sys.argv[1]
-
 		self.win.wm_title('Liveping - pinging ' + self.host)
 
 		# Ping data updating thread
@@ -97,9 +96,10 @@ class Liveping:
 		# Calculate the max y position on for 50 multiples
 		max_y = max(data)
 		mult = 1
-		while 50 * mult <= max_y:
+		scale_num = 50 if max_y > 30 else (5 if max_y > 5 else 2)
+		while scale_num * mult <= max_y:
 			mult += 1
-		max_y = mult * 50
+		max_y = mult * scale_num
 
 		# Draw the scale on sidebar
 		self.draw_rule(max_y)
@@ -128,11 +128,11 @@ class Liveping:
 		self.sidebar.delete(ALL)
 		for i in range(10):
 			y = (self.win_height/10)*i
-			r = (mx/10)*(10-i)
+			r = (mx/10.0)*(10.0-i)
 
 			if i > 0:
 				self.sidebar.create_line(35, y, 40, y, fill="black")
-				self.sidebar.create_text(20, y, text='%i' % r)
+				self.sidebar.create_text(20, y, text=('%i' % r if mx >= 10 else '%.1f' % r))
 				self.graph.create_line(0, y, self.cv_width, y, fill="gray18")
 
 if __name__ == '__main__':
