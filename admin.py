@@ -23,7 +23,7 @@ class Admin:
         if os.name == 'posix':
             # sudo or gksu depending if running on console or not
             run = "sudo" if sys.stdin.isatty() else "gksudo"
-            os.execvp(run, [run] + sys.argv)
+            os.execvp(run, [run, sys.executable] + sys.argv)
         elif os.name != 'nt':
             raise RuntimeError, "Could not run as administrator. Do it manually, please."
 
