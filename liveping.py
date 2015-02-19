@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+##########################
+# liveping.py - Displays a live graph with ping stats
+# By makzk, 2015 - https://github.com/makzk/liveping
+# Licensed under MIT license, available here:
+# https://github.com/makzk/liveping/blob/master/LICENSE
+##########################
+
 import sys, time, threading, admin, ping
 from Tkinter import *
 
