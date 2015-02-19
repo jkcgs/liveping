@@ -1,8 +1,10 @@
-liveping
-========
+# Liveping
 
 A Python application that makes a live graph of the network ping.
-It uses the library matplotlib to make the graph.
+The script must be executed as administrator/root to work. If it
+is not, the script will ask for administrative. On Windows, the
+[win32api](http://sourceforge.net/projects/pywin32/files/pywin32/)
+implementation is required for this to work.
 
 Usage: ./liveping [host]
 
