@@ -164,19 +164,22 @@ class Liveping:
 	ping = Ping().ping
 
 	def __init__(self):
-		self.exit = False
-		self.data = []
-		self.data_avg = []
-
+		# Settings
 		self.host = '8.8.8.8'
 		self.max_display = 100
 		self.spacing = 5
 		self.win_height = 300
+		self.ping_timeout = 1000
+
+		# Self data
 		self.cv_width = self.max_display*self.spacing-self.spacing
 		self.last_ping = 0
 		self.max_ping = 0
 		self.min_ping = 9999
 		self.avg_ping = 0
+		self.exit = False
+		self.data = []
+		self.data_avg = []
 
 		# Window
 		self.win = Tk()
@@ -211,7 +214,7 @@ class Liveping:
 		exit = True # Stop updater thread
 
 	def get_ping_ms(self):
-		lat = self.ping(self.host, .3)
+		lat = self.ping(self.host, self.ping_timeout / 1000)
 		return 0.0 if lat == None else (lat * 1000)
 
 	def updater(self):
