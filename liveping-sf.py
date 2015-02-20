@@ -208,7 +208,7 @@ class Liveping:
 		if host != self.host:
 			self.win.wm_title('Liveping - pinging %s (%s)' % (self.host, host))
 			self.host = host
-		else
+		else:
 			self.win.wm_title('Liveping - pinging ' + self.host)
 
 		# Ping data updating thread
