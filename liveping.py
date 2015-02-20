@@ -6,7 +6,7 @@
 # https://github.com/makzk/liveping/blob/master/LICENSE
 ##########################
 
-import sys, time, threading, socket, admin, ping
+import sys, time, threading, socket, admin, ping, tkMessageBox
 from Tkinter import *
 
 class Liveping:
@@ -34,6 +34,7 @@ class Liveping:
 
 		# Window
 		self.win = Tk()
+		self.win.config()
 
 		frame = Frame()
 		self.sidebar = Canvas(frame, bg="white", height=self.win_height, width=40)
@@ -51,6 +52,7 @@ class Liveping:
 		try:
 			host = socket.gethostbyname(self.host)
 		except socket.error:
+			tkMessageBox.showerror('Liveping error', 'Could not resolve host "' + self.host + '"')
 			raise
 
 		if host != self.host:

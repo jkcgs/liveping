@@ -7,7 +7,7 @@
 # https://github.com/makzk/liveping/blob/master/LICENSE
 ##########################
 
-import sys, os, time, threading, ctypes, socket, struct, select
+import sys, os, time, threading, ctypes, socket, struct, select, tkMessageBox
 from Tkinter import *
 from timeit import default_timer as timer
 
@@ -202,6 +202,7 @@ class Liveping:
 		try:
 			host = socket.gethostbyname(self.host)
 		except socket.error:
+			tkMessageBox.showerror('Liveping error', 'Could not resolve host "' + self.host + '"')
 			raise
 
 		if host != self.host:
