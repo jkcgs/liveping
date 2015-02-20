@@ -198,7 +198,17 @@ class Liveping:
 
 	def run(self):
 		if __name__ == '__main__' and len(sys.argv) > 1: self.host = sys.argv[1]
-		self.win.wm_title('Liveping - pinging ' + self.host)
+
+		try:
+			host = socket.gethostbyname(self.host)
+		except socket.error:
+			raise
+
+		if host != self.host:
+			self.win.wm_title('Liveping - pinging %s (%s)' % (self.host, host))
+			self.host = host
+		else
+			self.win.wm_title('Liveping - pinging ' + self.host)
 
 		# Ping data updating thread
 		thread = threading.Thread(target=self.updater)
