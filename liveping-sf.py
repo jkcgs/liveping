@@ -197,7 +197,7 @@ class Liveping:
 		self.bar.pack(fill=X)
 
 	def run(self):
-		if __name__ == '__main__' and len(sys.argv) > 1: host = sys.argv[1]
+		if __name__ == '__main__' and len(sys.argv) > 1: self.host = sys.argv[1]
 		self.win.wm_title('Liveping - pinging ' + self.host)
 
 		# Ping data updating thread
